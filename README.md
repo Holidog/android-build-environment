@@ -1,4 +1,4 @@
-# Android Build Environment by [Brainbean Apps](https://brainbeanapps.com)
+# Android Build Environment by [Holidog Apps](https://holidog.com)
 
 [![Build Status](https://img.shields.io/docker/build/brainbeanapps/android-build-environment.svg)](https://hub.docker.com/r/brainbeanapps/android-build-environment)
 [![Docker Pulls](https://img.shields.io/docker/pulls/brainbeanapps/android-build-environment.svg)](https://hub.docker.com/r/brainbeanapps/android-build-environment)
