@@ -29,12 +29,17 @@ RUN apt-get update \
 # Install Android SDK
 ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_SDK="${ANDROID_HOME}"
+
 # ANDROID_SDK_HOME should not be set in order to use user home directory
 ENV ANDROID_SDK_ROOT="${ANDROID_HOME}"
 ENV ANDROID_NDK="${ANDROID_HOME}/ndk-bundle"
 ENV ANDROID_NDK_ROOT="${ANDROID_NDK}"
 ENV ANDROID_NDK_HOME="${ANDROID_NDK}"
 ENV PATH="${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${PATH}"
+
+RUN mkdir ~/.android
+RUN touch ~/.android/repositories.cfg
+
 RUN mkdir -p "${ANDROID_HOME}" \
   && wget -q -O /opt/sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
   && unzip -q /opt/sdk-tools-linux.zip -d "${ANDROID_HOME}" \
