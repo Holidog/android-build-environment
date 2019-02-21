@@ -43,21 +43,14 @@ RUN mkdir -p "${ANDROID_HOME}" \
   && "${ANDROID_HOME}/tools/bin/sdkmanager" --update > /dev/null \
   && (while read -r PACKAGE; do (echo "Installing ${PACKAGE}"; yes | "${ANDROID_HOME}/tools/bin/sdkmanager" "$PACKAGE" > /dev/null) && continue; exit 1; done < /opt/sdk-packages.list)
 
-# Install Node.js & npm
+# Install Node.js + npm + apache cordova
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends nodejs \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
-  && npm install -g npm@latest
-
-# Install Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends yarn \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  && npm install -g npm@latest \
+  && npm install -g cordova
 
 # Switch to user
 USER user
